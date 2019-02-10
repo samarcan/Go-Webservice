@@ -8,5 +8,5 @@ import (
 // DefineSubUrls Define all users Urls
 func DefineSubUrls(s *mux.Router){
 	s.HandleFunc("/", userControllers.ListUserController).Methods("GET")
-	s.HandleFunc("/create", userControllers.CreateUserController).Methods("POST")
+	s.HandleFunc("/", userControllers.CreateUserController).Methods("POST")
 }

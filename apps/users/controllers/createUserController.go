@@ -16,11 +16,12 @@ func CreateUserController(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error while decoding request body: ", err)
 	}
 	result := userRepo.CreateUser(user)
-	fmt.Println(result)
 
 	dataResponse := map[string]bool {
 		"result": result,
 	}
 	response, _ := json.Marshal(dataResponse)
-	fmt.Fprintf(w, string(response))
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(response)
 }

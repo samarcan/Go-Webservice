@@ -10,9 +10,7 @@ import (
 
 // CreateUser Create new user instance
 func CreateUser(user *userEntities.User) bool{
-	userOrm := &userModels.UserORM{}
-	userJSON, _ := json.Marshal(&user)
-	json.NewDecoder(strings.NewReader(string(userJSON))).Decode(userOrm)
+	userOrm := EncodeUser(user)
 	db.GetDB().Create(&userOrm)
 	if userOrm.ID <= 0 {
 		return false
@@ -50,4 +48,11 @@ func DecodeOrmUsers(ormUsers []*userModels.UserORM) []userEntities.User{
 		users = append(users, DecodeOrmUser(ormUser))
 	}
 	return users
+}
+
+func EncodeUser(user *userEntities.User) *userModels.UserORM {
+	userOrm := &userModels.UserORM{}
+	userJSON, _ := json.Marshal(&user)
+	json.NewDecoder(strings.NewReader(string(userJSON))).Decode(userOrm)
+	return userOrm
 }
