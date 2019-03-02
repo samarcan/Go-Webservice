@@ -12,7 +12,7 @@ db_host = Database_Host
 db_port = Database_Port
 db_name = Database_Name
 db_user = Database_User
-db_password = Database_Password
+db_pass = Database_Password
 ```
 
 **Dependencides**
